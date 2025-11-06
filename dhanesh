@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Programs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    h2 {
+      margin-top: 30px;
+      color: #333;
+    }
+    section {
+      background: white;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    input, button, textarea, select {
+      margin: 5px 0;
+      padding: 8px;
+      width: 100%;
+      max-width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    pre {
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript Programs Demo</h1>
+
+  <!-- i. Arithmetic operations -->
+  <section>
+    <h2>i. Arithmetic Operations</h2>
+    <input type="number" id="num1" placeholder="Enter first number">
+    <input type="number" id="num2" placeholder="Enter second number">
+    <button onclick="calculate()">Calculate</button>
+    <pre id="result1"></pre>
+  </section>
+
+  <!-- ii. Array operations -->
+  <section>
+    <h2>ii. Array Operations</h2>
+    <button onclick="arrayOperations()">Run Array Program</button>
+    <pre id="result2"></pre>
+  </section>
+
+  <!-- iii. Form validation -->
+  <section>
+    <h2>iii. Form Validation</h2>
+    <form onsubmit="return validateForm()">
+      <input type="text" id="name" placeholder="Name">
+      <input type="email" id="email" placeholder="Email">
+      <input type="number" id="age" placeholder="Age">
+      <button type="submit">Submit</button>
+    </form>
+    <pre id="result3"></pre>
+  </section>
+
+  <!-- iv. Student object -->
+  <section>
+    <h2>iv. Student Object</h2>
+    <button onclick="studentOperations()">Run Student Program</button>
+    <pre id="result4"></pre>
+  </section>
+
+  <!-- v. Array with map, filter, reduce -->
+  <section>
+    <h2>v. Array map(), filter(), reduce()</h2>
+    <button onclick="processArray()">Run Array Method Program</button>
+    <pre id="result5"></pre>
+  </section>
+
+  <script>
+    // i. Arithmetic
+    function calculate() {
+      let a = parseFloat(document.getElementById('num1').value);
+      let b = parseFloat(document.getElementById('num2').value);
+      if (isNaN(a) || isNaN(b)) {
+        document.getElementById('result1').innerText = "Please enter valid numbers.";
+        return;
+      }
+      let sum = a + b;
+      let diff = a - b;
+      let prod = a * b;
+      let quot = (b !== 0) ? (a / b) : "Infinity (division by zero)";
+      document.getElementById('result1').innerText = 
+        `Sum: ${sum}\nDifference: ${diff}\nProduct: ${prod}\nQuotient: ${quot}`;
+    }
+
+    // ii. Array operations
+    function arrayOperations() {
+      let arr = [45, 12, 78, 3, 56];
+      let largest = Math.max(...arr);
+      let smallest = Math.min(...arr);
+      let asc = [...arr].sort((a,b)=>a-b);
+      let desc = [...arr].sort((a,b)=>b-a);
+      document.getElementById('result2').innerText =
+        `Array: [${arr}]\nLargest: ${largest}\nSmallest: ${smallest}\nAscending: [${asc}]\nDescending: [${desc}]`;
+    }
+
+    // iii. Form validation
+    function validateForm() {
+      let name = document.getElementById('name').value.trim();
+      let email = document.getElementById('email').value.trim();
+      let age = parseInt(document.getElementById('age').value);
+      let message = "";
+      if (name === "") {
+        message += "Name cannot be empty.\n";
+      }
+      let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        message += "Invalid email format.\n";
+      }
+      if (isNaN(age) || age < 18 || age > 100) {
+        message += "Age must be between 18 and 100.\n";
+      }
+      if (message) {
+        document.getElementById('result3').innerText = message;
+        return false; // prevent form submit
+      } else {
+        document.getElementById('result3').innerText = "Form submitted successfully!";
+        return false; // for demo, block actual submission
+      }
+    }
+
+    // iv. Student object
+    function studentOperations() {
+      let student = {
+        name: "Rahul",
+        age: 20,
+        grades: "A"
+      };
+      student.class = "B.Tech CSE";
+      student.grades = "A+";
+      let info = "";
+      for (let key in student) {
+        info += `${key}: ${student[key]}\n`;
+      }
+      document.getElementById('result4').innerText = info;
+    }
+
+    // v. Array methods map(), filter(), reduce()
+    function processArray() {
+      let arr = [1,2,3,4,5,6,7,8,9];
+      let evenNumbers = arr.filter(num => num % 2 === 0);
+      let doubled = evenNumbers.map(num => num * 2);
+      let sum = doubled.reduce((acc, curr) => acc + curr, 0);
+      document.getElementById('result5').innerText = 
+        `Original: [${arr}]\nEven: [${evenNumbers}]\nDoubled: [${doubled}]\nSum: ${sum}`;
+    }
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Programs</title>
+</head>
+<body>
+  <h1>Test Page Loaded!</h1>
+</body>
+</html>
